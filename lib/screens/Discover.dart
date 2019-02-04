@@ -1,11 +1,34 @@
 import "package:flutter/material.dart";
 import 'package:page_indicator/page_indicator.dart';
+
 class Discover extends StatefulWidget {
   @override
   _State createState() => new _State();
 }
 
 class _State extends State<Discover> {
+Future _showAlert(BuildContext context,String message) async 
+{
+  return showDialog(
+    context: context,
+    child: AlertDialog( shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(14.0)),
+      title: Center(child:Text(message,style: TextStyle(fontWeight:FontWeight.bold),)),
+      content: Text("By creating an account, you agree to our Terms of Service and our Privacy Policy"),
+      
+      actions: <Widget>[
+        Row(
+          children: <Widget>[
+            FlatButton(onPressed: ()=>Navigator.pop(context),child: Text("CANCEL",style: TextStyle(fontWeight:FontWeight.bold,),),),
+              FlatButton(onPressed: ()=>Navigator.of(context).pushNamed('/Settings'),child: Text("I AGREE",style: TextStyle(color:Colors.indigo,fontWeight:FontWeight.bold),),)
+          ],
+          
+        ),
+         
+      ],
+    )
+  );
+}
+
   Widget page1(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Container(
@@ -40,6 +63,9 @@ class _State extends State<Discover> {
       ),
     );
   }
+
+
+
 
   Widget page2(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -76,6 +102,9 @@ class _State extends State<Discover> {
     );
   }
 
+
+
+
   Widget page3(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -109,6 +138,7 @@ class _State extends State<Discover> {
               ),
             ),
             Container(
+              
               padding: EdgeInsets.fromLTRB(width/30, 0.0, width/30, 0.0),
               child: Text("By registering, you agree to our Terms of Service and our Privacy Policy",style: TextStyle(color: Colors.white),),
             ),
@@ -118,11 +148,14 @@ class _State extends State<Discover> {
               child: Center(
                 child: Column(
                   children: <Widget>[
-                    OutlineButton(highlightedBorderColor: Colors.white,
+                    OutlineButton(
+                    
+                      highlightedBorderColor: Colors.white,
                      color: Colors.lightBlueAccent,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0) ),
                       padding: EdgeInsets.fromLTRB(width/5.5, 15, width/5.5,15),
-                      onPressed: null,
+                      onPressed: (){_showAlert(context, "ACCEPT TERMS");},
+                   
                       child: Text(
                         "Connect With Facebook",
                         style: TextStyle(color: Colors.white),
@@ -140,6 +173,9 @@ class _State extends State<Discover> {
     );
   }
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -156,10 +192,10 @@ class _State extends State<Discover> {
             align: IndicatorAlign.top, // your indicator align with container
             length: 3, // indicator count
             indicatorColor: Colors.white, // unselected indicator color
-            indicatorSelectorColor: Colors.grey, // selected indicator color
+            indicatorSelectorColor: Colors.red, // selected indicator color
             padding: EdgeInsets.only(top: 8.0), // padding with bottom .when align top you should use properties `top:10.0`
             size: 10.0, // indicator size.
-            indicatorSpace: 12.0,)
+            indicatorSpace: 15.0,)
       ),
     ));
   }

@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:circleapp/screens/Discover.dart';
+import 'package:circleapp/screens/Settings.dart';
+
 import 'package:flutter/services.dart';
 import 'dart:async';
 
@@ -11,6 +13,7 @@ void main()
     routes: <String,WidgetBuilder>
     {
       '/Discover':(BuildContext context)=>Discover(),
+      '/Settings':(BuildContext context)=>Settings(),
     },
 
   ));
